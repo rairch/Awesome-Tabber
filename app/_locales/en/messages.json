@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "awesome-tabber",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Awesome Tab Changer",
+    "description": "The description of the application"
+  }
+}
