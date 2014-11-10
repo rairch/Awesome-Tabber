@@ -5,20 +5,47 @@
         <!-- bower:css -->
         <!-- endbower -->
         <!-- endbuild -->
-        <!-- build:css styles/main.css -->
-        <link href="styles/main.css" rel="stylesheet">
-        <!-- endbuild -->
+        <link href="styles/options.less" rel="stylesheet/less">
+        <script src="scripts/vendor/less.js"></script>
+        <script src="scripts/vendor/zepto.js"></script>
+        <script src="scripts/options.js"></script>
+        <style>
+        .__title {
+            font-weight: bold;
+        }
+        body {
+            min-width: 320px;
+        }
+        .form__show-value {
+            display: inline-block;
+            min-width: 80px;
+            opacity: 0.5;
+        }
+        .form__show-value:after {
+            content:" " "secs";
+        }
+        </style>
     </head>
     <body>
-        <h1>'Allo, 'Allo!</h1>
-                
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-        <!-- endbower -->
-        <!-- endbuild -->
 
-        <!-- build:js scripts/options.js -->
-        <script src="scripts/options.js"></script>
-        <!-- endbuild -->
+        <div class="page">
+            <h1></h1>
+            <form>
+                <div class="form__row">
+                    <label class="form__ios-switch-container"><span class="form__label form__lable--title">Active</span>
+                        <input type="checkbox" name="active" class="form__ios-switch" checked /><div class="switch"></div>
+                    </label>
+                </div>
+                <div class="form__row">
+                    <label for="interval" class="form__label">Interval,
+                    <span class="form__show-value"></span>
+                    </label>
+                    <input name="interval" 
+                        type="range" min="10" step="10" max="120" value="0" 
+                        class="" />
+                </div>
+
+            </form>
+        </div>
     </body>
 </html>
