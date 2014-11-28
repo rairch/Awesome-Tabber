@@ -2,10 +2,20 @@
     "use strict";
 
 
-    var options = {backgroundPage : null, active : false},
+    var options = {backgroundPage : null, active : false,checkInterval:1000},
         manifest = chrome.runtime.getManifest();
 
+    options.checkStatus = function(){
+      var newActive = backgroundPage.at.getSetting({"key":"active","type":"boolean"});
 
+      if (options.active !== newActive){
+        options.active = newActive;
+        $("input[name=active]").prop("checked", options.active);
+      }
+      setTimeout(function(){
+        options.checkStatus();
+      },options.checkInterval);
+    }
     options.init = function(){
     	$("h1").text( manifest.name + " Settings");
         $(".form__lable--title").text( manifest.name )
@@ -40,6 +50,7 @@
 
         setTimeout(function(){
             $("body").addClass( "ready" );
+            options.checkStatus();
         },100);
     }
     $(document).ready(function(){

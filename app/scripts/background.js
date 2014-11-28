@@ -36,20 +36,13 @@ var at = {
 	start:function(){
 		at.console.log('Awesome Tabber Started');
 		at.setSetting({"key":"active","value":true});
-    //at.setBadge(at.OPS.checkmark,[0, 200, 0, 255],"images/icon-arrows-128.png");
 		at.moveNext();
-		// chrome.browserAction.setBadgeText({text: at.OPS.checkmark});
-		// chrome.browserAction.setBadgeBackgroundColor( { color: [0, 0, 255, 255] } );
-		// chrome.browserAction.setIcon({path:"images/icon-arrows-128.png"});
 	},
 	stop:function(){
 		clearTimeout(at.timer);
 		at.console.log('Awesome Tabber Stopped');
 		at.setSetting({"key":"active","value":false});
     at.setBadge('',[180, 180, 180, 255],"images/icon-arrows-disabled-128.png");
-		// chrome.browserAction.setBadgeText({text: 'X'});
-		// chrome.browserAction.setBadgeBackgroundColor( { color: [180, 180, 180, 255] } );
-		// chrome.browserAction.setIcon({path:"images/icon-arrows-disabled-128.png"});
 	},
 	setBadge: function(text, colour, image){
 		var active = at.getSetting({'key':'active'});
