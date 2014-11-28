@@ -11,26 +11,33 @@
         $(".form__lable--title").text( manifest.name )
 
         $("input[name=active]").on("click",function(e){
-            var $el = $(e.target);
-            // TODO; options.backgoundPage.at.setSetting({  the active setting  })
-            if ($el.prop("checked")){
-            	options.backgroundPage.at.start();
+            var $el = $(e.target),
+                val = $el.prop("checked");
+
+            if (val){
+            	backgroundPage.at.start();
             } else {
-            	options.backgroundPage.at.stop();
+            	backgroundPage.at.stop();
             }
         });
+
         $("input[name=active]").prop("checked", options.active);
-        $("input[type=range]").on('input change',function(e){
+        $("input[name=interval]").on('input change',function(e){
             var $el = $(e.target),
                 val = $el.val(),
                 $parent = $el.closest("div"),
                 $display = $parent.find(".form__show-value");
 
             $display.text( val );
-            // TODO; options.backgoundPage.at.setSetting({  the interval setting  })
+            backgroundPage.at.setSetting({"key":"interval","value":val});
+        });
+        $("button[name=movenext]").on('click',function(e){
+          e.preventDefault();
+          backgroundPage.at.console.log('clicked')
+          backgroundPage.at.moveNext();
         });
         $("input[name=interval]").val( options.interval ).trigger('change');
-        
+
         setTimeout(function(){
             $("body").addClass( "ready" );
         },100);
@@ -42,11 +49,11 @@
         //     options.active = options.backgroundPage.at.getSetting({"key":"active","type":"boolean"});
         //     options.init();
         // })
-        options.backgroundPage = chrome.extension.getBackgroundPage();
-        options.active = true ;// options.backgroundPage.at.getSetting({"key":"active","type":"boolean"});
-        options.interval = 50 ; // TODO GET FROM BACKGROUND
+        window.backgroundPage = chrome.extension.getBackgroundPage();
+        options.active = backgroundPage.at.getSetting({"key":"active","type":"boolean"});
+        options.interval = backgroundPage.at.getSetting({"key":"interval","type":"number","default":20});
         options.init();
     });
-    
+
 
 })(window.$, document, window);

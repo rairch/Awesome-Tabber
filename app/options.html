@@ -24,6 +24,9 @@
         .form__show-value:after {
             content:" " "secs";
         }
+        .hidden {
+          display:none;
+        }
         </style>
     </head>
     <body>
@@ -37,11 +40,12 @@
                     </label>
                 </div>
                 <div class="form__row">
+
                     <label for="interval" class="form__label">Interval,
                     <span class="form__show-value"></span>
                     </label>
-                    <input name="interval" 
-                        type="range" min="10" step="10" max="120" value="0" 
+                    <input name="interval"
+                        type="range" min="10" step="10" max="120" value="0"
                         class="" />
                 </div>
 
